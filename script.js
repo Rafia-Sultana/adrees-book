@@ -6,7 +6,7 @@ const resetBtn = document.getElementById('reset-btn');
 const recordContainer = document.querySelector('.record-container');
 const deleteBtn = document.getElementById('delete-btn');
 
-/************************************************ */
+
 const name = document.getElementById('name');
 const address = document.getElementById('address');
 const number = document.getElementById('contact-num');
