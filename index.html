@@ -16,9 +16,12 @@
                 <h2>Create a Contact</h2>
                 <div class = "entry-form">
                     <form>
-                        <label for = "name">Your Name</label>
-                        <input type = "text" id = "name" placeholder="Enter your name">
+                        <label for = "name">Your First Name</label>
+                        <input type = "text" id = "name" placeholder="Enter First name">
 
+                        <label for = "name">Your Last Name</label>
+                        <input type = "text" id = "lastName" placeholder="Enter Last name">
+                       
                         <label for = "address">Your Address</label>
                         <input type = "text" id = "address" placeholder="Enter your address">
 
@@ -67,15 +70,14 @@
 
         <!-- JS file -->
         <script src = "script.js"></script>
-       <!--  JQuery -->
+       <!--  jQuery for search button animation-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     
         <script>
-        //$("h2").text("jQuery is the GREATEST!!!");
-        $( ".search-btn" ).click(function() {
-       $( this ).animate({ fontSize: "+=2px" }, "slow");
+         $( ".search-btn" ).click(function() {
+        $( this ).animate({ fontSize: "+=2px" }, "slow");
        });
-        </script>
+        </script> 
         
 
     </body>

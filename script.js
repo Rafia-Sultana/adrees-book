@@ -8,6 +8,9 @@ const deleteBtn = document.getElementById('delete-btn');
 
 
 const name = document.getElementById('name');
+//<!-- last name working start -->
+const lastName = document.getElementById('lastName');
+//<!-- last name working start -->
 const address = document.getElementById('address');
 const number = document.getElementById('contact-num');
 const totalContact = document.querySelector('.totalContact')
@@ -18,8 +21,9 @@ let ContactArray = [];
 let id = 0;
 
 // Object constructor for Contact
-function Contact(id, name, address, number){
+function Contact(id, name,lastName, address, number){
     this.id = id;
+    this.lastName=lastName;
     this.name = name;
     this.address = address;
     this.number = number;
@@ -56,15 +60,16 @@ function lastID(ContactArray){
 // Adding contact record
 
 addBtn.addEventListener('click', function(){
-    if(checkInputFields([name, address, number])){
+    if(checkInputFields([name,lastName,address, number])){
+        
         setMessage("success", "Record added successfully!");
         id++;
-        const contact = new Contact(id, name.value, address.value, number.value);
+        const contact = new Contact(id, name.value,    lastName.value, address.value, number.value);
         ContactArray.push(contact);
         // Storing contact record in local storage
         localStorage.setItem('contacts', JSON.stringify(ContactArray));
         clearInputFields();
-
+console.log(Contact);
        
         // Adding to list
         addToList(contact);
@@ -87,11 +92,12 @@ addBtn.addEventListener('click', function(){
             <span id = "labelling">Contact ID: </span>
             <span id = "contact-id-content">${item.id}</span>
         </div>
-
+       
         <div class = "record-el">
             <span id = "labelling">Name: </span>
-            <span id = "name-content">${item.name}</span>
+            <span id = "name-content">${item.name+" "+item.lastName}</span>
         </div>
+
 
         <div class = "record-el">
             <span id = "labelling">Address: </span>
@@ -164,6 +170,7 @@ cancelBtn.addEventListener('click', function(){
 
 function clearInputFields(){
     name.value = "";
+    lastName.value="";
     address.value = "";
     number.value = "";
 }
@@ -177,12 +184,14 @@ function removeMessage(status, messageBox){
 
 // Input field validation
 function checkInputFields(inputArr){
+   
     for(let i = 0; i < inputArr.length; i++){
         if(inputArr[i].value === ""){
+
             return false;
         }
     }
-    if(!phoneNumCheck(inputArr[2].value)){
+    if(!phoneNumCheck(inputArr[3].value)){
         return false;
     }
     return true;
@@ -208,9 +217,13 @@ function phoneNumCheck(inputtxt){
 searchBtn.addEventListener('click',()=>{
     ContactArray = JSON.parse(localStorage.getItem('contacts'));
    let filteredData=ContactArray.filter(data=>{
-    return data.name == search.value
-   })
-   console.log(filteredData);
+    
+
+   if((data.name.toLowerCase() == search.value.toLowerCase()) || (data.lastName.toLowerCase() == search.value.toLowerCase())) {
+    return (data.name.toLowerCase() == search.value.toLowerCase()) || (data.lastName.toLowerCase() == search.value.toLowerCase())
+   }
+  })
+   
   if(search.value==''){
     
     recordContainer.innerHTML=''
@@ -233,3 +246,6 @@ searchBtn.addEventListener('click',()=>{
   }
    
 })
+
+
+
