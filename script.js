@@ -138,6 +138,10 @@ resetBtn.addEventListener('click', function(){
     location.reload();
 })
 
+
+ 
+
+
 // Displaying status/alerts
 function setMessage(status, message){
     let messageBox = document.querySelector('.message');
